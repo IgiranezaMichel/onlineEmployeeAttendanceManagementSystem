@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+  <meta name="generator" content="Hugo 0.72.0">
+  <title>Album example</title>
+
+  <link rel="canonical" href="https://v5.getbootstrap.com/docs/5.0/examples/album/">
+
+  <script src="https://code.jquery.com/jquery-3.7.0.slim.min.js" integrity="sha256-tG5mcZUtJsZvyKAxYLVXrmjKBVLd6VpVccqz/r4ypFE=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+  <!-- Bootstrap core CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
+  <style>
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
+    }
+  </style>
+
+<script defer>
+    function submitForm(){
+        var name = document.getElementById("name").value;
+        var email = document.getElementById("email").value;
+        var tel = document.getElementById("tel").value;
+        var company = document.getElementById("company").value;
+        var password = document.getElementById("password").value;
+        var rpassword = document.getElementById("rpassword").value;
+        const employyeer={
+            name:name,
+            email:email,
+            phoneNumber:tel,
+            companyName:company,
+            password:password
+
+        }
+        if(employyeer.name ==''||employyeer.email ==''||employyeer.phoneNumber ==''||employyeer.company=='')
+        {alert('Please All information is required');return false;}
+        else if(employyeer.password!=rpassword)
+        {alert('Passwords not match');return false;}
+        else{saveEmployeerInformation(employyeer);return false;}
+        function saveEmployeerInformation(employeer)
+        {
+            const data=JSON.stringify(employeer);
+            alert(data);
+            const url='localhost:8080/employeer/save';
+            const xhttp=new XMLHttpRequest();
+            xhttp.setRequestHeader('Content-Type', 'application/json');
+            xhttp.onreadystatechange=()=>{
+                if(xhttp.readyState==4)
+                {
+                    if(xhttp.status==200)
+                    {
+                        
+                        alert(data);    
+                    }
+                    else{
+                        alert(data);
+                        // alert(xhttp.responseText);
+                    }
+                }}
+            xhttp.open('POST',url,true);
+            xhttp.send(data);
+       
+        }
+    }
+</script>
+</head>
+
+<body>
+
+  <header>
+    <div class="collapse bg-dark" id="navbarHeader">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-8 col-md-7 py-4">
+            <h4 class="text-white">About</h4>
+            <p class="text-muted">Add some information about the album below, the author, or any other background
+              context. Make it a few sentences long so folks can pick up some informative tidbits. Then, link them off
+              to some social networking sites or contact information.</p>
+          </div>
+          <div class="col-sm-4 offset-md-1 py-4">
+            <h4 class="text-white">Contact</h4>
+            <ul class="list-unstyled">
+              <li><a href="#" class="text-white">Follow on Twitter</a></li>
+              <li><a href="#" class="text-white">Like on Facebook</a></li>
+              <li><a href="#" class="text-white">Email me</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="navbar navbar-dark bg-dark shadow-sm">
+      <div class="container">
+        <a href="#" class="navbar-brand d-flex align-items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor"
+            stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="mr-2"
+            viewBox="0 0 24 24">
+            <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
+            <circle cx="12" cy="13" r="4" /></svg>
+          <strong>Album</strong>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader"
+          aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="py-5 text-center container-fluid bg-dark text-light">
+      <div class="row py-lg-5">
+        <div class="col-lg-6 col-md-8 mx-auto">
+          <h1 class="font-weight-light">Employee Management </h1>
+          <p class="lead">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque risus justo, euismod a tellus et, condimentum lacinia tellus. Sed sit amet faucibus risus. Nulla erat urna, volutpat eu risus quis, congue facilisis ex. Ut accumsan feugiat nunc, sit amet pellentesque orci posuere eget. 
+            Curabitur malesuada ligula lectus, a congue dolor pulvinar sed.
+          </p>
+          <p>
+            <a href="#" class="btn btn-outline-primary my-2">Login</a>
+            <a href="#" class="btn btn-outline-light my-2" data-bs-toggle="modal" data-bs-target="#modalId">Register</a>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <div class="album py-5 bg-light">
+      <div class="container">
+
+
+  </main>
+</body>
+<!-- modals -->
+<div class="modal fade" id="modalId" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-md" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTitleId">Create Account</h5>
+                    <button type="button" class="fa fa-close border-0 bg-transparent" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form onsubmit="submitForm()">
+                    <div class="mb-3">
+                        <label for="input1" class="form-label">Name</label>
+                        <input type="text" class="form-control" id="name" aria-describedby="emailHelp">
+                      </div>
+                      <div class="mb-3">
+                        <label for="input1" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
+                      </div>
+                      <div class="mb-3">
+                        <label for="input1" class="form-label">Phone Number</label>
+                        <input type="tel" class="form-control" id="tel" aria-describedby="emailHelp">
+                      </div>
+                      <div class="mb-3">
+                        <label for="input1" class="form-label">Company Name</label>
+                        <input type="text" class="form-control" id="company" aria-describedby="emailHelp">
+                      </div>
+                      <div class="mb-3">
+                        <label for="input1" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="password" aria-describedby="emailHelp">
+                      </div>
+                      <div class="mb-3">
+                        <label for="input1" class="form-label">Retype Password</label>
+                        <input type="password" class="form-control" id="rpassword" aria-describedby="emailHelp">
+                      </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-outline-primary">Register</button>
+                    </div>
+                </form>
+            </div>
+          
+        </div>
+    </div>
+</div>
+</html>
